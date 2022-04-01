@@ -1,1 +1,60 @@
-<h1>Hello, this is home page.</h1>
+<div class="row">
+	<div class="col-7">
+		<form>
+			<div class="form-group">
+				<select class="form-select" name="sort" id="sort">
+					<option selected>類別</option>
+					<option value="home">家居物業</option>
+					<option value="transportation">交通出行</option>
+					<option value="leisure">休閒娛樂</option>
+					<option value="eat">餐飲食品</option>
+					<option value="else">其他</option>
+				</select>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row mt-3 mb-3">
+	<div class="col-7">
+		<h4>總金額：</h4>
+		<div class="d-flex justify-content-end">
+			<p style="font-size:400%; color:red; font-weight:bold">21500</p>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<ul class="list-group">
+		{{!-- {{#each todos}} --}}
+			<li class="list-group-item">
+				<div class="row d-flex justify-content-between">
+					<div class="col-7 d-flex">
+						<div class="col-2 d-flex align-items-center">
+							<i class="fa-solid fa-utensils fa-4x" style="color: #008080;"></i>
+						</div>
+						<div class="col-6">
+							<h3>午餐</h3>
+							<p class="mb-0">2019/04/23</p>
+						</div>
+						<div class="ms-auto col-auto d-flex align-items-center">
+							<h3 class="me-3">100</h3>
+						</div>
+					</div>
+					<div class="col-auto d-flex align-items-center me-4">
+						<a class="btn btn-success me-4" href="./todos/{{ this._id }}/edit">修改</a>
+						<form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+							<button class="btn btn-danger" type="submit">刪除</button>
+						</form>
+					</div>
+				</div>
+			</li>
+		{{!-- {{/each}} --}}
+	</ul>
+</div>
+<div class="row">
+	<div class="col-7">
+		<div class="mt-3 d-grid gap-2 col-6 mx-auto">
+			<a href="/todos/new" class="btn btn-primary">新增支出</a>
+		</div>
+	</div>
+</div>
+
