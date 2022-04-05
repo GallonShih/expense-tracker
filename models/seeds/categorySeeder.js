@@ -12,9 +12,9 @@ const categoryList = require('./category.json').result
 
 // put seed data into db
 db.once('open', () => {
-  const categoryPromise = []
+  const categoryPromises = []
   categoryList.forEach(function (seedCategory) {
-    categoryPromise.push(
+    categoryPromises.push(
       Category.findOne({ name: seedCategory.name })
         .then(category => {
           if (category) {
@@ -29,9 +29,9 @@ db.once('open', () => {
         })
     )
   })
-  Promise.all(categoryPromise)
+  Promise.all(categoryPromises)
     .then(() => {
-      console.log('done.')
+      console.log('categorySeeder done.')
       process.exit()
     })
 })
