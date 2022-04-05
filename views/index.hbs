@@ -18,25 +18,25 @@
 	<div class="col-7">
 		<h4>總金額：</h4>
 		<div class="d-flex justify-content-end">
-			<p style="font-size:400%; color:red; font-weight:bold">21500</p>
+			<p style="font-size:400%; color:red; font-weight:bold">{{ totalAmount }}</p>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<ul class="list-group">
-		{{!-- {{#each todos}} --}}
+		{{#each recordData}}
 			<li class="list-group-item">
 				<div class="row d-flex justify-content-between">
 					<div class="col-7 d-flex">
 						<div class="col-2 d-flex align-items-center">
-							<i class="fa-solid fa-utensils fa-4x" style="color: #008080;"></i>
+							<i class="{{ this.categoryId.icon }} fa-4x" style="color: #008080;"></i>
 						</div>
 						<div class="col-6">
-							<h3>午餐</h3>
-							<p class="mb-0">2019/04/23</p>
+							<h3>{{ this.name }}</h3>
+							<p class="mb-0">{{ this.date }}</p>
 						</div>
 						<div class="ms-auto col-auto d-flex align-items-center">
-							<h3 class="me-3">100</h3>
+							<h3 class="me-3">{{ this.amount }}</h3>
 						</div>
 					</div>
 					<div class="col-auto d-flex align-items-center me-4">
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 			</li>
-		{{!-- {{/each}} --}}
+		{{/each}}
 	</ul>
 </div>
 <div class="row">
