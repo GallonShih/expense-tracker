@@ -54,6 +54,14 @@ router.put('/:id', (req, res) => {
     .then(() => res.redirect(`/`))
     .catch(err => console.log(err))
 })
+// delete
+router.delete('/:id', (req, res) => {
+  const _id = req.params.id
+  return Record.findById({ _id})
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // export
 module.exports = router
