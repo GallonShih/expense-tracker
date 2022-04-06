@@ -4,10 +4,10 @@ const router = express.Router()
 
 // require js files
 const home = require('./modules/home')
-const expense = require('./modules/expense')
+const expenses = require('./modules/expenses')
 
 // use router
-router.use('/expenses', expense)
+router.use('/expenses', expenses)
 router.use('/', home)
 
 // export

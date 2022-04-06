@@ -19,7 +19,12 @@ router.get('/', (req, res) => {
         record.date = moment(record.date).format('YYYY/MM/DD')
         totalAmount += record.amount
       })
-      return res.render('index', { recordData, totalAmount })
+      Category.find()
+        .lean()
+        .sort({ sort_no: 'asc' }) // asc/desc
+        .then(categoryData => {
+          return res.render('index', { recordData, totalAmount, categoryData })
+        })
     })
     .catch(error => console.error(error))
 })

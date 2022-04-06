@@ -3,12 +3,11 @@
 		<form>
 			<div class="form-group">
 				<select class="form-select" name="sort" id="sort">
-					<option selected>類別</option>
-					<option value="home">家居物業</option>
-					<option value="transportation">交通出行</option>
-					<option value="leisure">休閒娛樂</option>
-					<option value="eat">餐飲食品</option>
-					<option value="else">其他</option>
+					<option value="" selected disabled>類別</option>
+					<option value="all">所有</option>
+					{{#each categoryData}}
+						<option value="{{ this._id }}">{{ this.name }}</option>
+					{{/each}}
 				</select>
 			</div>
 		</form>
@@ -52,7 +51,7 @@
 </div>
 <div class="row">
 	<div class="col-7">
-		<div class="mt-3 d-grid gap-2 col-6 mx-auto">
+		<div class="mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
 			<a href="/expenses/new" class="btn btn-primary">新增支出</a>
 		</div>
 	</div>

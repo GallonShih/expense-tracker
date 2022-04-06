@@ -22,6 +22,7 @@ db.once('open', () => {
           } else {
             console.log(`Start creating Seed category ${seedCategory.name}.`)
             return Category.create({
+              sort_no: seedCategory.sort_no,
               name: seedCategory.name,
               icon: seedCategory.icon
             })

@@ -1,22 +1,27 @@
 {
   "result": [
     {
+      "sort_no": 1,
       "name": "家居物業",
       "icon": "fa-solid fa-house"
     },
     {
+      "sort_no": 2,
       "name": "交通出行",
       "icon": "fa-solid fa-van-shuttle"
     },
     {
+      "sort_no": 3,
       "name": "休閒娛樂",
       "icon": "fa-solid fa-face-grin-beam"
     },
     {
+      "sort_no": 4,
       "name": "餐飲食品",
       "icon": "fa-solid fa-utensils"
     },
     {
+      "sort_no": 5,
       "name": "其他",
       "icon": "fa-solid fa-pen"
     }
