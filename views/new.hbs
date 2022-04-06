@@ -4,7 +4,7 @@
     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
       <div class="card">
         <div class="card-body">
-          <form method="POST" action="/restaurants">
+          <form method="POST" action="/expenses">
             <div class="row mb-3 g-2">
               <label class="col-md-4">
                 <p class="d-inline">* 必填欄位</p>
@@ -30,16 +30,16 @@
                 日期 *
               </label>
               <div class="col-md-8">
-                <input type="date" name="date" class="form-control" id="date">
+                <input type="date" name="date" class="form-control" id="date" required>
               </div>
             </div>
 
             <div class="row g-2 mb-3">
-              <label for="category" class="col-md-4 col-form-label">
+              <label for="categoryId" class="col-md-4 col-form-label">
                 類別 *
               </label>
               <div class="col-md-8">
-                <select name="category" class="form-select form-control" aria-label="Default select example"  id="category">
+                <select name="categoryId" class="form-select form-control" aria-label="Default select example"  id="categoryId" required>
                   <option value="" selected disabled>Select</option>
                   {{#each categoryData}}
                     <option value="{{ this._id }}">{{ this.name }}</option>
@@ -53,7 +53,7 @@
                 金額 *
               </label>
               <div class="col-md-8">
-                <input type="number" name="amount" class="form-control" id="amount">
+                <input type="number" name="amount" class="form-control" id="amount" required>
               </div>
             </div>
             <hr>

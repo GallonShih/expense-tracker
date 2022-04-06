@@ -15,6 +15,13 @@ router.get('/new', (req, res) => {
       return res.render('new', { categoryData })
     })
 })
+// submitting new expense
+router.post('/', (req, res) => {
+  const expenseNew = req.body
+  return Record.create(expenseNew)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // export
 module.exports = router
