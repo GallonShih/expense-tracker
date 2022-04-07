@@ -76,10 +76,9 @@ router.post('/register', (req, res) => {
         password: hash // use hash to replace original passport
       }))
       .then(user => {
-        res.redirect('/')
-        // req.login(user, () => {
-        //   res.redirect('/')
-        // })
+        req.login(user, () => {
+          res.redirect('/')
+        })
       })
       .catch(err => console.log(err))
   })
