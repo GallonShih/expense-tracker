@@ -1,3 +1,6 @@
+// require packages used in the project
+const bcrypt = require('bcryptjs')
+
 // use environment variables
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -25,11 +28,14 @@ db.once('open', () => {
             return user
           } else {
             console.log(`Start creating seed user ${seedUser.email}.`)
-            return User.create({
+            return bcrypt
+              .genSalt(10)
+              .then(salt => bcrypt.hash(seedUser.password, salt))
+              .then(hash => User.create({
                 name: seedUser.name,
                 email: seedUser.email,
-                password: seedUser.password
-            })
+                password: hash
+              }))
           }
         })
         .then(user => {
