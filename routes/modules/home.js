@@ -19,7 +19,9 @@ router.get('/', (req, res) => {
       recordData.forEach(record => {
         record.date = moment(record.date).format('YYYY/MM/DD')
         totalAmount += record.amount
+        record.amount = record.amount.toLocaleString('en-US')
       })
+      totalAmount = totalAmount.toLocaleString('en-US')
       Category.find()
         .lean()
         .sort({ sort_no: 'asc' }) // asc/desc
@@ -58,7 +60,9 @@ router.get('/filter', (req, res) => {
       recordData.forEach(record => {
         record.date = moment(record.date).format('YYYY/MM/DD')
         totalAmount += record.amount
+        record.amount = record.amount.toLocaleString('en-US')
       })
+      totalAmount = totalAmount.toLocaleString('en-US')
       Category.find()
         .lean()
         .sort({ sort_no: 'asc' }) // asc/desc
