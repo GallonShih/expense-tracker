@@ -10,6 +10,7 @@ const Category = require('../../models/category')
 // setting router
 router.get('/', (req, res) => {
   const userId = req.user._id
+  req.session.categoryId = null
   Record.find({ userId })
     .populate({ path: 'categoryId' })
     .lean()
@@ -28,14 +29,9 @@ router.get('/', (req, res) => {
         .then(categoryData => {
           categoryData.unshift(
             {
-              _id: new Object(''),
-              name: '類別',
-              isSelected: true,
-              isDisabled: true
-            },
-            {
               _id: new Object('all'),
-              name: '所有'
+              name: '所有類別',
+              isSelected: true
             }
           )
           return res.render('index', { recordData, totalAmount, categoryData })
@@ -47,7 +43,8 @@ router.get('/', (req, res) => {
 router.get('/filter', (req, res) => {
   const userId = req.user._id
   const recordFilter = { userId: userId }
-  const categoryId = req.query.categoryId
+  const categoryId = req.query.categoryId || req.session.categoryId
+  req.session.categoryId = categoryId
   if (req.query.categoryId !== 'all') {
     recordFilter.categoryId = categoryId
   }
@@ -74,13 +71,8 @@ router.get('/filter', (req, res) => {
           })
           categoryData.unshift(
             {
-              _id: new Object(''),
-              name: '類別',
-              isDisabled: true
-            },
-            {
               _id: new Object('all'),
-              name: '所有',
+              name: '所有類別',
               isSelected: true
             }
           )

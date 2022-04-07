@@ -22,7 +22,13 @@ router.post('/', (req, res) => {
   const expenseNew = req.body
   expenseNew.userId = req.user._id
   return Record.create(expenseNew)
-    .then(() => res.redirect('/'))
+    .then(() => {
+      if (req.session.categoryId) {
+        res.redirect('/filter')
+      } else {
+        res.redirect('/')
+      }
+    })
     .catch(error => console.log(error))
 })
 // edit expense page
@@ -55,7 +61,13 @@ router.put('/:id', (req, res) => {
   const expense = req.body
   expense.userId = req.user._id
   Record.findByIdAndUpdate(_id, expense)
-    .then(() => res.redirect(`/`))
+    .then(() => {
+      if (req.session.categoryId) {
+        res.redirect('/filter')
+      } else {
+        res.redirect('/')
+      }
+    })
     .catch(err => console.log(err))
 })
 // delete
@@ -64,7 +76,13 @@ router.delete('/:id', (req, res) => {
   const _id = req.params.id
   return Record.findById({ _id, userId})
     .then(record => record.remove())
-    .then(() => res.redirect('/'))
+    .then(() => {
+      if (req.session.categoryId) {
+        res.redirect('/filter')
+      } else {
+        res.redirect('/')
+      }
+    })
     .catch(error => console.log(error))
 })
 
