@@ -9,7 +9,8 @@ const Category = require('../../models/category')
 
 // setting router
 router.get('/', (req, res) => {
-  Record.find()
+  const userId = req.user._id
+  Record.find({ userId })
     .populate({ path: 'categoryId' })
     .lean()
     .sort({ date: 'desc' }) // asc/desc
@@ -42,7 +43,8 @@ router.get('/', (req, res) => {
 })
 // category filter
 router.get('/filter', (req, res) => {
-  const recordFilter = {}
+  const userId = req.user._id
+  const recordFilter = { userId: userId }
   const categoryId = req.query.categoryId
   if (req.query.categoryId !== 'all') {
     recordFilter.categoryId = categoryId

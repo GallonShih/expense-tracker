@@ -20,14 +20,16 @@ router.get('/new', (req, res) => {
 // submitting new expense
 router.post('/', (req, res) => {
   const expenseNew = req.body
+  expenseNew.userId = req.user._id
   return Record.create(expenseNew)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 // edit expense page
 router.get('/:id/edit', (req, res) => {
+  const userId = req.user._id
   const _id = req.params.id
-  return Record.findById({ _id })
+  return Record.findById({ _id, userId })
     .populate({ path: 'categoryId' })
     .lean()
     .then((recordData) => {
@@ -50,14 +52,17 @@ router.get('/:id/edit', (req, res) => {
 // submitting edit page
 router.put('/:id', (req, res) => {
   const _id = req.params.id
-  Record.findByIdAndUpdate(_id, req.body)
+  const expense = req.body
+  expense.userId = req.user._id
+  Record.findByIdAndUpdate(_id, expense)
     .then(() => res.redirect(`/`))
     .catch(err => console.log(err))
 })
 // delete
 router.delete('/:id', (req, res) => {
+  const userId = req.user._id
   const _id = req.params.id
-  return Record.findById({ _id})
+  return Record.findById({ _id, userId})
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
