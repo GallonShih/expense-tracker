@@ -1,6 +1,7 @@
 // require relative packages
 const express = require('express')
 const router = express.Router()
+const passport = require('passport')
 const bcrypt = require('bcryptjs')
 
 // require relative js files
@@ -11,6 +12,25 @@ const User = require('../../models/user')
 router.get('/login', (req, res) => {
   res.render('login')
 })
+// submitting login page
+router.post('/login', (req, res, next) => {
+  const { email, password } = req.body
+  const errors = []
+  if (!email || !password) {
+    errors.push({ message: 'Both email and passport are required!' })
+  }
+  if (errors.length) {
+    return res.render('login', {
+      errors,
+      email
+    })
+  }
+  next()
+},passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
 // register page
 router.get('/register', (req, res) => {
   res.render('register')

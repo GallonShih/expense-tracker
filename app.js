@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // require js files
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 // use packages
@@ -19,6 +20,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+usePassport(app)
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
