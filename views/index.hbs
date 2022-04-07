@@ -1,12 +1,11 @@
 <div class="row">
 	<div class="col-7">
-		<form>
+		<form action="/filter" method="get">
 			<div class="form-group">
-				<select class="form-select" name="sort" id="sort">
-					<option value="" selected disabled>類別</option>
-					<option value="all">所有</option>
+				<select class="form-select" name="categoryId" id="categoryId" onchange="this.form.submit()">
+					{{!-- <option value="" selected disabled>類別</option> --}}
 					{{#each categoryData}}
-						<option value="{{ this._id }}">{{ this.name }}</option>
+						<option value="{{ this._id }}" {{#if this.isSelected }}selected{{/if}} {{#if this.isDisabled }}disabled{{/if}}>{{ this.name }}</option>
 					{{/each}}
 				</select>
 			</div>
@@ -22,7 +21,7 @@
 	</div>
 </div>
 <div class="row">
-	<ul class="list-group">
+	<ul class="list-group" id="listGroup">
 		{{#each recordData}}
 			<li class="list-group-item">
 				<div class="row d-flex justify-content-between">
