@@ -17,7 +17,7 @@ background-color: #e95420;">
 				家庭記帳本
 			</a>
 			{{#if isAuthenticated}}
-			<a href="/users/logout" class="btn btn-outline-light">登出</a>
+			<a href="/users/logout" class="btn btn-outline-light" onclick="return confirm('Sure to logout?')">登出</a>
 			{{else}}
 			<a href="/users/login" class="btn btn-outline-light">登入</a>
 			{{/if}}

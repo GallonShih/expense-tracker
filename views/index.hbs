@@ -40,7 +40,7 @@
 					<div class="col-auto d-flex align-items-center me-4">
 						<a class="btn btn-success me-4" href="./expenses/{{ this._id }}/edit">修改</a>
 						<form action="./expenses/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-							<button class="btn btn-danger" type="submit">刪除</button>
+							<button class="btn btn-danger" type="submit" onclick="return confirm('Sure to delete?')">刪除</button>
 						</form>
 					</div>
 				</div>
